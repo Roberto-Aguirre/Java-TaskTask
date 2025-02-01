@@ -1,0 +1,28 @@
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: my-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Ilike2pizza
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    image: javaapi
+    # restart: always
+    build: 
+      dockerfile: ./Dockerfile
+    container_name: spring-api
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    ports:
+      - "8000:8080"
+
+volumes:
+  mysql_data:
