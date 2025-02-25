@@ -6,19 +6,20 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: Ilike2pizza
-      MYSQL_DATABASE: task_application
-      MYSQL_USER: root
-      MYSQL_PASSWORD: Ilike2pizza@
     ports:
-      - "3306:3306"
+      - 3307:3306
     volumes:
       - mysql_data:/var/lib/mysql
 
   app:
-    image: springapi
-    build: Dockerfile
+    image: javaapi
+    # restart: always
+    build: 
+      dockerfile: ./Dockerfile
     container_name: spring-api
     depends_on:
+      - mysql
+    links:
       - mysql
     ports:
       - "8000:8080"
