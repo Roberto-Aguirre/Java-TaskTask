@@ -38,11 +38,12 @@ public class TaskService {
     public ResponseEntity<Object> createTask(TaskDTO newTask) {
         Status embebedStatus = statusRepository.findById(newTask.getStatus_id()).get();
         Task createdTask = new Task(newTask, embebedStatus);
-        try {
-            return new ResponseEntity<>(taskRepository.save(createdTask),HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<>(taskRepository.save(createdTask),HttpStatus.OK);
+
+        // try {
+        // } catch (Exception e) {
+        //     return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        // }
     }
 
     public ResponseEntity<Object> updateTask(TaskDTO updatedTask, Long id) {

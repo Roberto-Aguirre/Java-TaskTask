@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.time.LocalDate;
 
 
@@ -31,7 +32,6 @@ public class Task {
     @ManyToOne(targetEntity = Status.class)
     private Status status;
     private Boolean priority;
-
 
     public void update(Task newTask){
         this.id= newTask.getId();
